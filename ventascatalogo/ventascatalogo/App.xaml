@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ventascatalogo.App">
+             x:Class="ventascatalogo.App"
+             xmlns:infra="clr-namespace:ventascatalogo.Infrastructure">
 	<Application.Resources>
-    
+        <ResourceDictionary>
+            <infra:InstanceLocator x:Key="Locator"/>
+
+            <x:String  x:Key="UrlAPI">http://192.168.0.17:8081</x:String>
+            <x:String  x:Key="UrlPrefix">/api</x:String>
+            <x:String  x:Key="UrlProductsController">/Products</x:String>
+        </ResourceDictionary>
 	</Application.Resources>
 </Application>
