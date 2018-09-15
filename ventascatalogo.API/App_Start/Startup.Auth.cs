@@ -13,6 +13,7 @@ using ventascatalogo.API.Models;
 
 namespace ventascatalogo.API
 {
+
     public partial class Startup
     {
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }

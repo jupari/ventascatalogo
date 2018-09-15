@@ -9,9 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using ventascatalogo.Backend.Models;
 using ventascatalogo.Common.Models;
+using ventascatalogo.Backend.Helpers;
+
 
 namespace ventascatalogo.Backend.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private LocalDataContext db = new LocalDataContext();
@@ -48,16 +51,41 @@ namespace ventascatalogo.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProductId,Descripcion,Remark,ImagePath,Price,IsAvailable,PublishOn")] Product product)
+        public async Task<ActionResult> Create(ProductView view)
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                await db.SaveChangesAsync();
+                var pic = string.Empty;
+                var folder = "~/Content/Products";
+
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = $"{folder}/{pic}";
+                }
+
+                var product = this.ToProduct(view, pic);
+
+                this.db.Products.Add(product);
+                await this.db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(product);
+            return View(view);
+        }
+
+        private Product ToProduct(ProductView view,string pic)
+        {
+            return new Product
+            {
+                Descripcion=view.Descripcion,
+                ImagePath=pic,
+                IsAvailable=view.IsAvailable,
+                Price=view.Price,
+                ProductId=view.ProductId,
+                PublishOn=view.PublishOn,
+                Remark=view.Remark,
+            };
         }
 
         // GET: Products/Edit/5
@@ -72,7 +100,24 @@ namespace ventascatalogo.Backend.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+            var view = this.ToView(product);
+
+            return View(view);
+        }
+
+        private ProductView ToView(Product product)
+        {
+            return new ProductView
+            {
+                Descripcion = product.Descripcion,
+                ImagePath = product.ImagePath,
+                IsAvailable = product.IsAvailable,
+                Price = product.Price,
+                ProductId = product.ProductId,
+                PublishOn = product.PublishOn,
+                Remark = product.Remark,
+            };
         }
 
         // POST: Products/Edit/5
@@ -80,15 +125,25 @@ namespace ventascatalogo.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProductId,Descripcion,Remark,ImagePath,Price,IsAvailable,PublishOn")] Product product)
+        public async Task<ActionResult> Edit(ProductView view)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                var pic = view.ImagePath;
+                var folder = "~/Content/Products";
+
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = $"{folder}/{pic}";
+                }
+
+                var product = this.ToProduct(view, pic);
+                this.db.Entry(product).State = EntityState.Modified;
+                await this.db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(view);
         }
 
         // GET: Products/Delete/5

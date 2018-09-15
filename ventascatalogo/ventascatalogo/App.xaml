@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <infra:InstanceLocator x:Key="Locator"/>
 
-            <x:String  x:Key="UrlAPI">http://192.168.0.17:8081</x:String>
+            <x:String  x:Key="UrlAPI">http://181.48.119.100:3057</x:String>
             <x:String  x:Key="UrlPrefix">/api</x:String>
             <x:String  x:Key="UrlProductsController">/Products</x:String>
         </ResourceDictionary>

@@ -70,6 +70,51 @@ namespace ventascatalogo.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add Product.
+        /// </summary>
+        public static string AddProduct {
+            get {
+                return ResourceManager.GetString("AddProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Change Image.
+        /// </summary>
+        public static string ChangeImage {
+            get {
+                return ResourceManager.GetString("ChangeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Description Error.
+        /// </summary>
+        public static string DescriptionError {
+            get {
+                return ResourceManager.GetString("DescriptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the Description Product .
+        /// </summary>
+        public static string DescriptionPlaceholder {
+            get {
+                return ResourceManager.GetString("DescriptionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
         public static string Error {
@@ -88,6 +133,69 @@ namespace ventascatalogo.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Price Error.
+        /// </summary>
+        public static string PriceError {
+            get {
+                return ResourceManager.GetString("PriceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the Price Product.
+        /// </summary>
+        public static string PricePlaceholder {
+            get {
+                return ResourceManager.GetString("PricePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Products.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remark.
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter The remark product.
+        /// </summary>
+        public static string RemarkPlaceholder {
+            get {
+                return ResourceManager.GetString("RemarkPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Please turn on your internet settings..
         /// </summary>
         public static string TurnOnInternet {
@@ -95,7 +203,5 @@ namespace ventascatalogo.Resources {
                 return ResourceManager.GetString("TurnOnInternet", resourceCulture);
             }
         }
-
-        public static string Products { get; internal set; }
     }
 }
